@@ -1,0 +1,262 @@
+@import "tailwindcss";
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+/* SOMA design tokens */
+:root,
+[data-theme="dark"] {
+  --void: #070B12;
+  --surface: #0F1829;
+  --elevated: #1A2333;
+  --signal: #3AA4EB;
+  --vital: #178F78;
+  --pulse: #7B61FF;
+  --ember: #F5881A;
+  --aurora: linear-gradient(135deg, #1BAE8B 0%, #2E82BC 48%, #6552D0 100%);
+
+  --signal-fill: rgba(58, 164, 235, 0.13);
+  --signal-border: rgba(58, 164, 235, 0.36);
+  --vital-fill: rgba(23, 143, 120, 0.16);
+  --vital-border: rgba(42, 183, 153, 0.36);
+  --pulse-fill: rgba(123, 97, 255, 0.15);
+  --pulse-border: rgba(123, 97, 255, 0.38);
+  --ember-fill: rgba(245, 136, 26, 0.14);
+  --ember-border: rgba(245, 136, 26, 0.34);
+  --amber: #F07830;
+  --amber-fill: rgba(240, 120, 48, 0.13);
+  --amber-border: rgba(240, 120, 48, 0.38);
+  --danger: #BC5468;
+  --danger-fill: rgba(188, 84, 104, 0.12);
+  --danger-border: rgba(188, 84, 104, 0.28);
+
+  --bg: var(--void);
+  --surface-1: var(--surface);
+  --surface-2: var(--elevated);
+  --surface-3: #202C40;
+  --border: #172338;
+  --border-strong: #263752;
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --hairline: rgba(255, 255, 255, 0.08);
+  --fg: #F3F7FB;
+  --fg-1: #E7EDF5;
+  --fg-2: #A8B5C7;
+  --fg-3: #76859A;
+  --text-soft: #A8B5C7;
+  --label: #8291AA;
+  --line: #20304A;
+  --nav: #0B1320;
+  --phone-canvas: #03070D;
+  --phone-frame: #070B12;
+  --phone-ring: #202B3C;
+  --status-fg: #F8FAFC;
+  --on-accent: #FFFFFF;
+  --overlay: rgba(3, 7, 13, 0.72);
+
+  --pos: var(--vital);
+  --pos-fill: var(--vital-fill);
+  --neg: var(--danger);
+
+  --habit-done-bg: rgba(23, 143, 120, 0.18);
+  --habit-done-border: var(--vital-border);
+  --habit-empty-bg: rgba(15, 24, 41, 0.44);
+  --progress-track: #1D2A42;
+  --progress-fill: var(--signal);
+  --ring-track: #15233A;
+  --note-bg: #101E31;
+  --fab-bg: var(--vital);
+  --fab-surface: linear-gradient(180deg, #1AA086 0%, #116B5A 100%);
+  --fab-shadow: 0 16px 34px rgba(34, 211, 166, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.20), inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+  --workout-cta-shadow: 0 12px 26px rgba(58, 164, 235, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.14), inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+  --action-bg: rgba(15, 24, 41, 0.86);
+  --action-border: var(--line);
+  --workout-hero-bg: linear-gradient(145deg, rgba(17, 34, 55, 0.98) 0%, rgba(13, 45, 74, 0.98) 58%, rgba(12, 23, 41, 0.98) 100%);
+  --workout-hero-border: rgba(58, 164, 235, 0.34);
+  --workout-hero-fg: #FFFFFF;
+  --workout-hero-muted: #C9D8E8;
+  --workout-cta-bg: var(--aurora);
+  --workout-cta-fg: #FFFFFF;
+  --shadow-card: 0 8px 22px rgba(0, 0, 0, 0.34);
+  --card-workout-bg: linear-gradient(135deg, rgba(58, 164, 235, 0.22), rgba(123, 97, 255, 0.13));
+  --card-workout-border: rgba(58, 164, 235, 0.28);
+  --card-workout-shadow: 0 16px 38px rgba(58, 164, 235, 0.16);
+  --badge-green: var(--vital);
+  --button-primary-bg: #0F6B5A;
+  --button-primary-bg-hover: #117A68;
+  --button-primary-bg-active: #0C5447;
+  --button-primary-surface: linear-gradient(180deg, #137464 0%, #0A5040 100%);
+  --button-primary-shadow: 0 4px 12px rgba(4, 45, 39, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.20), inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+  --button-secondary-surface: linear-gradient(180deg, #1C2840 0%, #101924 100%);
+  --button-secondary-bg: var(--surface-1);
+  --button-secondary-border: var(--vital-border);
+  --button-secondary-fg: #35C0A2;
+  --button-secondary-shadow: 0 2px 8px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -2px 0 rgba(0, 0, 0, 0.20);
+  --button-ghost-fg: var(--label);
+  --button-danger-bg: var(--danger);
+  --button-danger-bg-hover: #A64060;
+  --button-danger-shadow: 0 3px 8px rgba(188, 84, 104, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.10), inset 0 -1px 0 rgba(0, 0, 0, 0.14);
+}
+
+[data-theme="light"] {
+  --void: #F2F6FB;
+  --surface: #FFFFFF;
+  --elevated: #EAF1F8;
+  --signal: #167DCA;
+  --vital: #0A8068;
+  --pulse: #6447D8;
+  --ember: #C46800;
+  --aurora: linear-gradient(135deg, #128E72 0%, #1F72B3 50%, #6048CC 100%);
+
+  --signal-fill: rgba(22, 125, 202, 0.10);
+  --signal-border: rgba(22, 125, 202, 0.28);
+  --vital-fill: rgba(10, 128, 104, 0.12);
+  --vital-border: rgba(10, 128, 104, 0.30);
+  --pulse-fill: rgba(100, 71, 216, 0.12);
+  --pulse-border: rgba(100, 71, 216, 0.30);
+  --ember-fill: rgba(196, 104, 0, 0.12);
+  --ember-border: rgba(196, 104, 0, 0.30);
+  --amber: #D96020;
+  --amber-fill: rgba(217, 96, 32, 0.12);
+  --amber-border: rgba(217, 96, 32, 0.32);
+  --danger: #8B2840;
+  --danger-fill: rgba(139, 40, 64, 0.09);
+  --danger-border: rgba(139, 40, 64, 0.24);
+
+  --bg: var(--void);
+  --surface-1: var(--surface);
+  --surface-2: var(--elevated);
+  --surface-3: #DDE8F3;
+  --border: #DDE6F0;
+  --border-strong: #C6D4E4;
+  --border-subtle: rgba(15, 24, 41, 0.07);
+  --hairline: rgba(15, 24, 41, 0.09);
+  --fg: #07111F;
+  --fg-1: #1B2A40;
+  --fg-2: #53647C;
+  --fg-3: #8290A3;
+  --text-soft: #53647C;
+  --label: #8290A3;
+  --line: #DDE6F0;
+  --nav: #FFFFFF;
+  --phone-canvas: #CAD4E1;
+  --phone-frame: #FFFFFF;
+  --phone-ring: #1F2937;
+  --status-fg: #061222;
+  --on-accent: #FFFFFF;
+  --overlay: rgba(7, 17, 31, 0.56);
+
+  --pos: var(--vital);
+  --pos-fill: var(--vital-fill);
+  --neg: var(--danger);
+
+  --habit-done-bg: rgba(10, 128, 104, 0.12);
+  --habit-done-border: var(--vital-border);
+  --habit-empty-bg: #FFFFFF;
+  --progress-track: #D5E0EC;
+  --progress-fill: var(--signal);
+  --ring-track: #D9E3EF;
+  --note-bg: #DCEAF6;
+  --fab-bg: var(--vital);
+  --fab-surface: linear-gradient(180deg, #0D9178 0%, #085E4E 100%);
+  --fab-shadow: 0 16px 34px rgba(12, 143, 112, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.20), inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+  --workout-cta-shadow: 0 12px 26px rgba(22, 125, 202, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.14), inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+  --action-bg: rgba(255, 255, 255, 0.94);
+  --action-border: rgba(15, 24, 41, 0.14);
+  --workout-hero-bg: linear-gradient(145deg, #F5FAFF 0%, #E9F5FF 52%, #E9EDFF 100%);
+  --workout-hero-border: rgba(22, 125, 202, 0.22);
+  --workout-hero-fg: #07111F;
+  --workout-hero-muted: #314B68;
+  --workout-cta-bg: var(--aurora);
+  --workout-cta-fg: #FFFFFF;
+  --shadow-card: 0 8px 22px rgba(18, 38, 63, 0.10);
+  --card-workout-bg: linear-gradient(135deg, rgba(22, 125, 202, 0.16), rgba(100, 71, 216, 0.10));
+  --card-workout-border: rgba(22, 125, 202, 0.24);
+  --card-workout-shadow: 0 12px 30px rgba(22, 125, 202, 0.18);
+  --badge-green: var(--vital);
+  --button-primary-bg: #12A886;
+  --button-primary-bg-hover: #14B894;
+  --button-primary-bg-active: #0E9478;
+  --button-primary-surface: linear-gradient(180deg, #16BF9A 0%, #0E9070 100%);
+  --button-primary-shadow: 0 4px 10px rgba(10, 82, 68, 0.20), inset 0 1px 0 rgba(255, 255, 255, 0.40), inset 0 -1px 0 rgba(0, 0, 0, 0.10);
+  --button-secondary-surface: linear-gradient(180deg, #FFFFFF 0%, #EDF3FA 100%);
+  --button-secondary-bg: var(--surface);
+  --button-secondary-border: var(--vital-border);
+  --button-secondary-fg: var(--vital);
+  --button-secondary-shadow: 0 2px 6px rgba(15, 24, 41, 0.18), inset 0 1px 0 rgba(255, 255, 255, 1.0), inset 0 -2px 0 rgba(0, 0, 0, 0.10);
+  --button-ghost-fg: var(--label);
+  --button-danger-bg: var(--danger);
+  --button-danger-bg-hover: #721E34;
+  --button-danger-shadow: 0 3px 6px rgba(139, 40, 64, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.16), inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-geist), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 500;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+/* Prevent iOS Safari from auto-zooming when a form control is focused.
+   iOS zooms whenever the computed font-size is < 16px at focus time.
+   We target touch devices by pointer type (not viewport width) so this
+   applies in landscape mode, on iPads, and in PWA standalone mode — all
+   contexts where max-width: 640px would silently stop firing. Desktop mice
+   have pointer: fine, so the rule has no desktop effect. */
+@media (hover: none) and (pointer: coarse) {
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+.mono {
+  font-family: var(--font-geist-mono), 'SF Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.soma-auth-input,
+.soma-auth-input:focus,
+.soma-auth-input:active {
+  background: transparent !important;
+  caret-color: var(--fg);
+}
+
+.soma-auth-input:-webkit-autofill,
+.soma-auth-input:-webkit-autofill:hover,
+.soma-auth-input:-webkit-autofill:focus,
+.soma-auth-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: var(--fg) !important;
+  caret-color: var(--fg);
+  transition: background-color 999999s ease-in-out 0s;
+}
+
