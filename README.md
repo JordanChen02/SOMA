@@ -37,11 +37,9 @@ The project also gave me a practical surface for building production-style featu
 
 ## Demo
 
-A hosted demo link can be added here:
+Live demo: [SOMA on Vercel](https://somafit.vercel.app/login)
 
-`https://your-demo-url.example`
-
-For local exploration, use the demo entry point in the app after starting the development server.
+Use demo mode to explore SOMA without creating an account, or sign in with a configured Supabase project when running locally.
 
 ## Tech Stack
 
