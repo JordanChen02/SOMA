@@ -27,12 +27,13 @@ The project also gave me a practical surface for building production-style featu
 
 ## Screenshots
 
-Screenshots are intentionally represented with placeholders in this public version.
+| Today | Workouts | Calendar |
+| --- | --- | --- |
+| ![SOMA Today dashboard](assets/soma_today.png) | ![SOMA workouts screen](assets/soma_workouts.png) | ![SOMA calendar screen](assets/soma_calendar.png) |
 
-- `docs/screenshots/today.png`
-- `docs/screenshots/workout.png`
-- `docs/screenshots/progress.png`
-- `docs/screenshots/trainer.png`
+| Progress | Progress Detail | More |
+| --- | --- | --- |
+| ![SOMA progress screen](assets/soma_progress.png) | ![SOMA progress detail screen](assets/soma_progress2.png) | ![SOMA more screen](assets/soma_more.png) |
 
 ## Demo
 
